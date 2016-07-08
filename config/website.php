@@ -10,5 +10,4 @@ return [
     'static' => 'white',
     'logo' => 'Start<span class=\'green\'>BBS</span>',
     'auto_tag' => 'on',
-    'encryption_key' => 'b86ea1c2b9efdd75bec3bf23cbe3149b',
 ];

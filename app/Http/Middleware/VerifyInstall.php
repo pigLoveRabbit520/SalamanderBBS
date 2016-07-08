@@ -17,7 +17,11 @@ class VerifyInstall
     {
         $file = public_path() . '\install.lock';
         if (!is_file($file)){
-            return redirect('install');
+            if($request->path() == 'install') {
+                return $next($request);
+            } else {
+                return redirect('install');
+            }
         } else {
             return $next($request);
         }

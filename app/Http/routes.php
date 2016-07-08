@@ -10,10 +10,8 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::group(['middleware' => 'install'], function() {
-    Route::get('/', 'Home\IndexController@show');
+Route::get('/', 'Home\IndexController@show');
 
-});
 
 
 Route::get('install', 'Home\InstallController@show');
