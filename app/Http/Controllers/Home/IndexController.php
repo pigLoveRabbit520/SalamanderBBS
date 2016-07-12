@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 class IndexController extends BaseController
 {
     public function show() {
-        return view('Home.home');
+        return view('home.home');
     }
 
     public function get(Request $request) {
