@@ -1,5 +1,5 @@
 <div id="navbar-wrapper">
-<div  id="navigation" class="navbar <?php if($this->config->item('static')=='default'){?>navbar-inverse<?php } else{?>navbar-default<?php }?> navbar-fixed-top">
+<div  id="navigation" class="navbar navbar-default navbar-fixed-top">
 <div class="container">
 
 	<div class="navbar-header">
@@ -8,7 +8,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-		<a class="navbar-brand" href="<?php echo site_url()?>"><?php echo $settings['logo'];?></a>
+		<a class="navbar-brand" href="/">{{ $settings['logo'] }}</a>
 <!--<a class=".btn .btn-default navbar-btn collapsed" data-target=".navbar-collapse" data-toggle="collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a href="<?php echo site_url()?>" class="brand">Start<span class="green">BBS</span></a>-->
 	</div>
 
@@ -45,8 +45,8 @@
               </ul>
             </li>
 			<?php }else{?>
-            <li><a href="<?php echo site_url('user/register')?>">注册</a></li>
-            <li><a href="<?php echo site_url('user/login')?>">登入</a></li>
+            <li><a href="/user/register">注册</a></li>
+            <li><a href="/user/login">登入</a></li>
             <?php }?>
           </ul>
         </div><!--/.nav-collapse -->
