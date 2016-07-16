@@ -3,5 +3,5 @@
 Homestead.yaml
 Homestead.json
 .env
-.env.example
 /.idea
+/.env.example
