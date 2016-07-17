@@ -66,8 +66,8 @@
                     </div>
                     <div class="panel-body">
                         <ul class="list-unstyled">
-                            <li>最新会员：<?php echo $stats['last_username']?></li>
-                            <li>注册会员： <?php echo $stats['total_users']?></li>
+                            <li>最新会员：{{ $stats['last_username'] }}</li>
+                            <li>注册会员： {{ $stats['total_users'] }}</li>
                             <li>今日话题： <?php echo $stats['today_topics'];?></li>
                             <li>昨日话题： <?php echo $stats['yesterday_topics'];?></li>
                             <li>话题总数： <?php echo $stats['total_topics']?></li>
@@ -76,26 +76,29 @@
                     </div>
                 </div>
 
-
-                <?php $this->load->view('common/sidebar_ad');?>
+                @include('home.common.sidebar_ad')
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">友情链接</h3>
                     </div>
                     <div class="panel-body">
                         <ul class="list-unstyled">
-                            <li style="width:0; height:0; overflow:hidden;"><a href="http://www.startbbs.com" target="_blank">StartBBS</a></li>
-                            <?php if($links){?>
-                            <?php foreach($links as $v){?>
-                            <?php if($v['is_hidden']==0){?>
-                            <li><a href="<?php echo $v['url'];?>" target="_blank"><?php echo $v['name'];?></a></li>
-                            <?php } else {?>
-                            <li>暂无链接</li>
-                            <?php } ?>
-                            <?php }?>
-                            <?php } else {?>
-                            <li>暂无链接</li>
-                            <?php }?>
+                            <li style="width:0; height:0; overflow:hidden;">
+                                <a href="http://www.startbbs.com" target="_blank">StartBBS</a>
+                            </li>
+                            @if($links)
+                                @foreach($links as $v)
+                                    @if($v['is_hidden']==0)
+                                        <li>
+                                            <a href="{{ $v['url'] }}" target="_blank">{{ $v['name'] }}</a>
+                                        </li>
+                                    @else
+                                        <li>暂无链接</li>
+                                    @endif
+                                @endforeach
+                            @else
+                                <li>暂无链接</li>
+                            @endif
                         </ul>
                     </div>
                 </div>
