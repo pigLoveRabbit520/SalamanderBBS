@@ -9,42 +9,56 @@
                         <h3 class="panel-title">{{ $settings['welcome_tip'] }}</h3>
                     </div>
                     <div class="panel-body">
-                        <?php if($topic_list):?>
-                        <ul class="media-list" id="topic_list">
-                            <?php foreach ($topic_list as $v):?>
-                            <li class="media topic-list">
-                                <div class="pull-right">
-                                    <span class="badge badge-info topic-comment"><a href="<?php echo url('topic_show',$v['topic_id']).'#reply';?>"><?php echo $v['comments'] ;?></a></span>
-                                </div>
-                                <a class="media-left" href="<?php echo site_url('user/profile/'.$v['uid']);?>"><img class="img-rounded medium" src="<?php echo base_url($v['avatar'].'normal.png');?>" alt="<?php echo $v['username']?> medium avatar"></a>
-                                <div class="media-body">
-                                    <h2 class="media-heading topic-list-heading"><a href="<?php echo url('topic_show',$v['topic_id']);?>"><?php echo $v['title'];?></a><?php if( $v['is_top'] == '1' ) echo '<span class="badge badge-info">置顶</span>'; ?></h2>
-                                    <p class="text-muted">
-                                        <span><a href="<?php echo url('node_show',$v['node_id']);?>"><?php echo $v['cname']?></a></span>&nbsp;•&nbsp;
-                                        <span><a href="<?php echo site_url('user/profile/'.$v['uid']);?>"><?php echo $v['username'];?></a></span>&nbsp;•&nbsp;
-                                        <span><?php echo friendly_date($v['updatetime'])?></span>&nbsp;•&nbsp;
-                                        <?php if ($v['rname']!=NULL) : ?>
-                                        <span>最后回复来自 <a href="<?php echo site_url('user/profile/'.$v['ruid']);?>"><?php echo $v['rname']; ?></a></span>
-                                        <?php else : ?>
-                                        <span>暂无回复</span>
-                                        <?php endif; ?>
-                                    </p>
-                                </div>
-                            </li>
-                            <?php endforeach;?>
-                        </ul>
-                        <?php else : ?>
+                        @if($topic_list)
+                            <ul class="media-list" id="topic_list">
+                                @foreach ($topic_list as $v)
+                                <li class="media topic-list">
+                                    <div class="pull-right">
+                                        <span class="badge badge-info topic-comment">
+                                            <a href="/topic/show/{{ $v['topic_id'] }}#reply">
+                                                {{ $v['comments'] }}
+                                            </a>
+                                        </span>
+                                    </div>
+                                    <a class="media-left" href="/user/profile/{{ $v['uid'] }}">
+                                        <img class="img-rounded medium" src="" alt="{{ $v['username'] }} medium avatar">
+                                    </a>
+                                    <div class="media-body">
+                                        <h2 class="media-heading topic-list-heading">
+                                            <a href="/topic/show/{{ $v['topic_id'] }}">{{ $v['title'] }}</a>@if($v['is_top'] == '1')<span class="badge badge-info">置顶</span>@endif
+                                        </h2>
+                                        <p class="text-muted">
+                                            <span>
+                                                <a href="/node/show/{{ $v['node_id'] }}">{{ $v['cname'] }}</a>
+                                            </span>&nbsp;•&nbsp;
+                                            <span>
+                                                <a href="/user/profile/{{ $v['uid'] }}">{{ $v['username'] }}</a>
+                                            </span>&nbsp;•&nbsp;
+                                            <span>{{ $v['updatetime'] }}</span>&nbsp;•&nbsp;
+                                            @if($v['rname']!=NULL)
+                                            <span>最后回复来自 <a href="user/profile/{{ $v['ruid'] }}">{{ $v['rname'] }}</a></span>
+                                            @else
+                                            <span>暂无回复</span>
+                                            @endif
+                                        </p>
+                                    </div>
+                                </li>
+                                @endforeach
+                            </ul>
+                        @else
                         暂无话题
-                        <?php endif;?>
+                        @endif
                     </div>
-                    <div class="panel-footer"><a href="javascript:void(0)" id="getmore" class="startbbs">更多新主题</a></div>
+                    <div class="panel-footer">
+                        <a href="javascript:void(0)" id="getmore" class="startbbs">更多新主题</a>
+                    </div>
                 </div><!-- /.topic list -->
 
             </div><!-- /.col-md-8 -->
 
             <div class="col-md-4">
-                <?php $this->load->view('common/sidebar_login');?>
-                <?php $this->load->view('common/sidebar_cates');?>
+                @include('home.common.sidebar_login')
+                @include('home.common.sidebar_cates')
 
                 <div class="panel panel-default">
                     <div class="panel-heading">

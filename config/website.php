@@ -10,4 +10,10 @@ return [
     'static' => 'white',
     'logo' => 'Start<span class=\'green\'>BBS</span>',
     'auto_tag' => 'on',
+    'comment_order' => 'desc',
+    'is_approve' => 'off',
+    'per_page_num' => '20',
+    'home_page_num' => '20',
+    'timespan' => '10',
+    'words_limit' => '8000',
 ];
