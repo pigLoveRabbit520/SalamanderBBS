@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Home;
 use App\Http\Service\Link;
 use App\Http\Service\Node;
 use App\Http\Service\Topic;
-use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Config;

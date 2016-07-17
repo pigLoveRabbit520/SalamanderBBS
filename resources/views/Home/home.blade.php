@@ -9,7 +9,7 @@
                         <h3 class="panel-title">{{ $settings['welcome_tip'] }}</h3>
                     </div>
                     <div class="panel-body">
-                        @if($topic_list)
+                        @if(!empty($topic_list))
                             <ul class="media-list" id="topic_list">
                                 @foreach ($topic_list as $v)
                                 <li class="media topic-list">
@@ -35,7 +35,7 @@
                                                 <a href="/user/profile/{{ $v['uid'] }}">{{ $v['username'] }}</a>
                                             </span>&nbsp;•&nbsp;
                                             <span>{{ $v['updatetime'] }}</span>&nbsp;•&nbsp;
-                                            @if($v['rname']!=NULL)
+                                            @if(!empty($v['rname']))
                                             <span>最后回复来自 <a href="user/profile/{{ $v['ruid'] }}">{{ $v['rname'] }}</a></span>
                                             @else
                                             <span>暂无回复</span>
@@ -46,7 +46,7 @@
                                 @endforeach
                             </ul>
                         @else
-                        暂无话题
+                            暂无话题
                         @endif
                     </div>
                     <div class="panel-footer">
@@ -67,11 +67,11 @@
                     <div class="panel-body">
                         <ul class="list-unstyled">
                             <li>最新会员：{{ $stats['last_username'] }}</li>
-                            <li>注册会员： {{ $stats['total_users'] }}</li>
-                            <li>今日话题： <?php echo $stats['today_topics'];?></li>
-                            <li>昨日话题： <?php echo $stats['yesterday_topics'];?></li>
-                            <li>话题总数： <?php echo $stats['total_topics']?></li>
-                            <li>回复数： <?php echo $stats['total_comments']?></li>
+                            <li>注册会员：{{ $stats['total_users'] }}</li>
+                            <li>今日话题：{{ $stats['today_topics'] }}</li>
+                            <li>昨日话题：{{ $stats['yesterday_topics'] }}</li>
+                            <li>话题总数：{{ $stats['total_topics'] }}</li>
+                            <li>回复数：{{ $stats['total_comments'] }}</li>
                         </ul>
                     </div>
                 </div>
@@ -86,7 +86,7 @@
                             <li style="width:0; height:0; overflow:hidden;">
                                 <a href="http://www.startbbs.com" target="_blank">StartBBS</a>
                             </li>
-                            @if($links)
+                            @if(!empty($links))
                                 @foreach($links as $v)
                                     @if($v['is_hidden']==0)
                                         <li>
