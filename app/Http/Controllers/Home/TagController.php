@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers\Home;
 
+use app\Http\Logic\Tag;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 
 class TagController extends Controller
 {
-    public function index() {
+    public function index($page = 1) {
         $limit = 30;
-        $start = ($page-1)*$limit;
-        $this->load->library('pagination');
+        $start = ($page-1) * $limit;
         $data['pagination'] = $this->pagination->create_links();
-        $data['tag_list'] = $this->tag_m->get_tag_list($start, $limit);
-        $data['action']='tag';
-        $data['title']="标签列表";
+        $data['tag_list'] = (new Tag())->getTagList($start, $limit);
+        $data['title'] = "标签列表";
         return view('home.tag_index', $data);
     }
 

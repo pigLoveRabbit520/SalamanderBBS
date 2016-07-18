@@ -9,7 +9,7 @@
                 <li>
             <span>
                 <a href="<?php echo url('topic_show',$v['topic_id']);?>" class="startbbs">
-                    {{ sb_substr($v['title'],14) }}</a>
+                    {{ substr($v['title'],14) }}</a>
                 <span class="pull-right gray">{{ $v['updatetime'] }}</span></span>
                 </li>
             @endforeach

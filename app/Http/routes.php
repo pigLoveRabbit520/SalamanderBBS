@@ -10,12 +10,14 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+
+Route::pattern('page', '[0-9]+');
 Route::get('/', 'Home\IndexController@index');
 
-Route::get('/node', 'Home\NodeController@index');
+Route::get('/nodes', 'Home\NodeController@index');
 
-Route::get('/user', 'Home\UserController@index');
+Route::get('/users', 'Home\UserController@index');
 
-Route::get('/tag', 'Home\TagController@index');
+Route::get('/tags/{page?}', 'Home\TagController@index');
 
 Route::get('install', 'Home\InstallController@show');

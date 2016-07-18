@@ -13,9 +13,9 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li @if(Request::path() == '/') class="active" @endif><a href="/">首页</a></li>
-                <li @if(Request::path() == 'node') class="active" @endif><a href="/node">节点</a></li>
-                <li @if(Request::path() == 'user') class="active" @endif><a href="/user">会员</a></li>
-                <li @if(Request::path() == 'tag') class="active" @endif><a href="/tag">标签</a></li>
+                <li @if(Request::path() == 'nodes') class="active" @endif><a href="/nodes">节点</a></li>
+                <li @if(Request::path() == 'users') class="active" @endif><a href="/users">会员</a></li>
+                <li @if(Request::path() == 'tags') class="active" @endif><a href="/tags">标签</a></li>
                 <li @if(Request::path() == 'topic/add') class="active" @endif><a href="/topic/add">发表</a></li>
             </ul>
 
@@ -38,11 +38,11 @@
                             <li><a href="<?php echo site_url('message')?>">站内信</a></li>
                             <li><a href="<?php echo site_url('settings')?>">设置</a></li>
                             <?php if($this->auth->is_admin()){ ?>
-                            <li><a href="<?php echo site_url('admin/login')?>">管理后台</a></li>
+                            <li><a href="/admin/login">管理后台</a></li>
                             <?php }?>
                             <li class="divider"></li>
                             <!--<li class="dropdown-header">Nav header</li>-->
-                            <li><a href="<?php echo site_url('user/logout')?>">退出</a></li>
+                            <li><a href="/user/logout">退出</a></li>
                         </ul>
                     </li>
                 @else
