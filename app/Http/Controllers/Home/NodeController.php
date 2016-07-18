@@ -29,12 +29,10 @@ class NodeController extends Controller
         }
         if(@$nodeIds){
             $num = count(@$nodeIds);
-            $nodeIds = implode(',',@$nodeIds);//原生态的sql时用到
             $data['topic_list']= (new Topic())->getTopicsListByNodeIds($num, @$nodeIds);
-
             if($data['topic_list'])
                 foreach( $data['topic_list'] as $v ) {
-                    $data['new_topic'][$v['node_id']][]=$v;
+                    $data['new_topic'][$v['node_id']][] = $v;
                 }
         }
         // 最新会员列表
