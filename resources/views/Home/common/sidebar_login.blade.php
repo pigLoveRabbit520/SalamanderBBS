@@ -35,7 +35,7 @@
         </div>
     </div>
     <div class="panel-footer text-muted">
-		@if($myinfo['notices'])
+		@if(!empty($myinfo['notices']))
 		<img align="top" alt="Dot_orange" class="icon" src="/common/images/dot_orange.png" />
 		<a href="/notifications">{{ $myinfo['notices'] }} 条未读提醒</a>
 		@else

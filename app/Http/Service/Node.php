@@ -21,7 +21,6 @@ class Node
         if(!empty($res)){
             foreach($res as $k=>$v){
                 $cates[$v['pid']][] = $v;
-
             }
         }
         return @$cates;

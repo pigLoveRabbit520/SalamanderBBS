@@ -4,12 +4,15 @@
     </div>
     <div class="panel-body">
 		<ul class='user-list clearfix'>
-		<?php if($new_users) foreach($new_users as $v){?>
-		<li>
-		<a href="<?php echo site_url('user/profile/'.$v['uid']);?>"  title="<?php echo $v['username'];?>">
-		<img class="img-rounded" alt="<?php echo $v['username'];?>" src="<?php echo base_url($v['avatar'].'normal.png');?>" />
-		</a></li>
-		<?php }?>
+			@if(!empty($new_users))
+                @foreach($new_users as $v)
+                <li>
+                    <a href="/user/profile/{{ $v['uid'] }}"  title="{{ $v['username'] }}">
+                        <img class="img-rounded" alt="{{ $v['username'] }}" src="{{ $v['avatar'].'normal.png' }}" />
+                    </a>
+                </li>
+                @endforeach
+			@endif
 		</ul>
     </div>
 </div>

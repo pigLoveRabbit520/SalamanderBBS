@@ -19,4 +19,36 @@ class Topic
             ->take($limit)->get();
         return $res;
     }
+
+    /**
+     * 通过节点获取帖子
+     * @param $limit
+     * @param $nodeIds
+     * @return mixed
+     */
+    public function getTopicsListByNodeIds ($limit, $nodeIds) {
+        return DB::table('topics as a')
+            ->select('a.topic_id', 'a.title', 'a.node_id', 'a.updatetime', 'b.uid', 'b.username')
+            ->leftJoin('users as b', 'b.uid', '=', 'a.uid')
+            ->whereIn('node_id', $nodeIds)
+            ->orderBy('a.updatetime','desc')
+            ->groupBy('node_id')
+            ->take($limit)
+            ->get();
+    }
+
+    /**
+     * 获取最新的帖子
+     * @param $limit
+     * @return mixed
+     */
+    public function getLatestTopics($limit) {
+        return DB::table('topics')
+            ->select('topic_id', 'title', 'updatetime')
+            ->where('is_hidden',0)
+            ->orderBy('updatetime','desc')
+            ->take($limit)->get();
+    }
+
+
 }

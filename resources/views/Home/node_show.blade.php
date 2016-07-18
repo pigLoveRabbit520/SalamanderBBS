@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset='UTF-8'>
-<meta content='width=device-width, initial-scale=1.0' name='viewport'>
-<title><?php echo $title?>- <?php echo $settings['site_name']?></title>
-<meta name="keywords" content="<?php echo $title?>" />
-<meta name="description" content="<?php echo $category['content'];?>" />
-<?php $this->load->view('common/header-meta');?>
-</head>
-<body id="startbbs">
-<?php $this->load->view('common/header');?>
+@extends('home.home.common.base)
+
+@section('main')
     <div class="container">
         <div class="row">
             <div class="col-md-8">
@@ -19,7 +10,7 @@
                     </div>
                     <div class="panel-body">
                         <p class="text-muted">
-                        <?php echo $category['content'];?>
+                            <?php echo $category['content'];?>
                         </p>
                     </div>
                 </div>
@@ -28,9 +19,9 @@
                         <h3 class="panel-title">话题列表<small>(版主:<?php echo $category['master'];?>)</small><span class='pull-right'><a href="<?php echo site_url('/topic/add/'.$category['node_id']);?>" class="label label-success">快速发表</a></span></h3>
                     </div>
                     <div class="panel-body">
-	                    <?php if($topic_list):?>
+                        <?php if($topic_list):?>
                         <ul class="media-list">
-							<?php foreach($topic_list as $v):?>
+                            <?php foreach($topic_list as $v):?>
                             <li class="media topic-list">
                                 <a class="media-left" href="<?php echo site_url('user/profile/'.$v['uid']);?>"><img class="img-rounded medium" src="<?php echo base_url($v['avatar'].'normal.png');?>" alt="<?php echo $v['username'];?>"></a>
                                 <div class="media-body">
@@ -40,33 +31,31 @@
                                         <span><a href="<?php echo site_url('user/profile/'.$v['uid']);?>"><?php echo $v['username'];?></a></span>&nbsp;•&nbsp;
                                         <span><?php echo friendly_date($v['updatetime'])?></span>&nbsp;•&nbsp;
                                         <?php if ($v['rname']!=NULL):?>
-                                            <span>最后回复来自 <a href="<?php echo site_url('user/profile/'.$v['ruid']);?>"><?php echo $v['rname']; ?></a></span>
+                                        <span>最后回复来自 <a href="<?php echo site_url('user/profile/'.$v['ruid']);?>"><?php echo $v['rname']; ?></a></span>
                                         <?php else:?>
-                                            <span>暂无回复</span>
+                                        <span>暂无回复</span>
                                         <?php endif;?>
                                     </p>
                                 </div>
                             </li>
-						<?php endforeach;?>
+                            <?php endforeach;?>
                         </ul>
                         <nav>
-                        <?php if($pagination):?><ul class="pager"><?php echo $pagination;?></ul><?php endif?></nav>
-						<?php else:?>
-						暂无话题
-						<?php endif?>
+                            <?php if($pagination):?><ul class="pager"><?php echo $pagination;?></ul><?php endif?></nav>
+                        <?php else:?>
+                        暂无话题
+                        <?php endif?>
                     </div>
                 </div>
             </div><!-- /.col-md-8 -->
 
             <div class="col-md-4">
-			<?php $this->load->view('common/sidebar_login');?>
-			<?php $this->load->view('common/sidebar_cates');?>
-			<?php $this->load->view('common/sidebar_ad');?>
-            </div><!-- /.col-md-4 -->
+                @include('home.common.sidebar_login')
+                @include('home.common.sidebar_cates')
+                @include('home.common.sidebar_ad')
+            </div>
 
-        </div><!-- /.row -->
+        </div>
     </div><!-- /.container -->
 
-<?php $this->load->view('common/footer');?>
-</body>
-</html>
+@stop
