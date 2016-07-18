@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Home;
 use App\Http\Service\Node;
 use App\Http\Service\Topic;
 use App\Http\Service\User;
-use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -20,14 +19,14 @@ class NodeController extends Controller
         // 获取版块列表
         $data['catelist'] = (new Node())->getAllCates();
         // 获取node_ids数据
-        if($data['catelist'])
-            foreach($data['catelist'] as $k=>$v){
-                $c[$k]=$v;
+        if($data['catelist']) {
+            foreach($data['catelist'] as $k => $v){
+                $c[$k] = $v;
                 foreach($c[$k] as $k1 => $d){
                     $nodeIds[] = $d['node_id'];
                 }
             }
-
+        }
         if(@$nodeIds){
             $num = count(@$nodeIds);
             $nodeIds = implode(',',@$nodeIds);//原生态的sql时用到

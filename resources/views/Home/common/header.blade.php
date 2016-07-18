@@ -13,10 +13,10 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li @if(Request::path() == '/') class="active" @endif><a href="/">首页</a></li>
-                <li @if(Request::path() == '/node') class="active" @endif><a href="/node">节点</a></li>
-                <li @if(Request::path() == '/user') class="active" @endif><a href="/user">会员</a></li>
-                <li @if(Request::path() == '/tag') class="active" @endif><a href="/tag">标签</a></li>
-                <li @if(Request::path() == '/topic/add') class="active" @endif><a href="/topic/add">发表</a></li>
+                <li @if(Request::path() == 'node') class="active" @endif><a href="/node">节点</a></li>
+                <li @if(Request::path() == 'user') class="active" @endif><a href="/user">会员</a></li>
+                <li @if(Request::path() == 'tag') class="active" @endif><a href="/tag">标签</a></li>
+                <li @if(Request::path() == 'topic/add') class="active" @endif><a href="/topic/add">发表</a></li>
             </ul>
 
             <form action="/search" method="post" accept-charset="utf-8" class="navbar-form navbar-left" target="_blank" role="search">
