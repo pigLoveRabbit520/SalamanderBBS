@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Home;
 
-use App\Http\Service\Link;
-use App\Http\Service\Node;
-use App\Http\Service\Topic;
+use App\Http\Logic\Link;
+use App\Http\Logic\Node;
+use App\Http\Logic\Topic;
 
 use App\Http\Requests;
-use App\Http\Service\User;
+use App\Http\Logic\User;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;

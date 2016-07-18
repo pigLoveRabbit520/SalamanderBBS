@@ -5,7 +5,7 @@
  * Time: 20:56
  */
 
-namespace App\Http\Service;
+namespace App\Http\Logic;
 
 
 use Illuminate\Support\Facades\DB;

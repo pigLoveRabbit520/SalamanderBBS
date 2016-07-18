@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Home;
 
-use App\Http\Service\Node;
-use App\Http\Service\Topic;
-use App\Http\Service\User;
+use App\Http\Logic\Node;
+use App\Http\Logic\Topic;
+use App\Http\Logic\User;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;

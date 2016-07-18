@@ -14,4 +14,8 @@ Route::get('/', 'Home\IndexController@index');
 
 Route::get('/node', 'Home\NodeController@index');
 
+Route::get('/user', 'Home\UserController@index');
+
+Route::get('/tag', 'Home\TagController@index');
+
 Route::get('install', 'Home\InstallController@show');
