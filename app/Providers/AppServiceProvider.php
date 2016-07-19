@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
@@ -31,8 +32,8 @@ class AppServiceProvider extends ServiceProvider
         );
         // 用户相关信息
         if (session('uid')) {
-            $userinfo = DB::table('users')->select('notices','messages_unread')
-                ->where('uid', session('uid'))->first();
+            $userinfo = User::where('uid', session('uid'))
+               ->first();
             $data['myinfo']=array(
                 'uid'=> session('uid'),
                 'username'=> session('username'),
@@ -40,10 +41,10 @@ class AppServiceProvider extends ServiceProvider
                 'group_type'=> session('group_type'),
                 'gid'=> session('gid'),
                 'group_name'=> session('group_name'),
-                'is_active'=> session('is_active'),
-                'favorites'=> session('favorites'),
-                'follows'=> session('favorites'),
-                'credit'=> session('favorites'),
+                'is_active'=> @$userinfo['is_active'],
+                'favorites'=>  @$userinfo['favorites'],
+                'follows'=> @$userinfo['follows'],
+                'credit'=>  @$userinfo['credit'],
                 'notices'=> @$userinfo['notices'],
                 'messages_unread'=>@$userinfo['messages_unread'],
                 'lastpost'=> session('lastpost')

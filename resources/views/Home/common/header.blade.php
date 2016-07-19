@@ -30,7 +30,9 @@
 
             <ul class="nav navbar-nav navbar-right">
                 @if(session('uid'))
-                    <li><a href="<?php echo site_url('message/')?>"><span class="glyphicon glyphicon-envelope"></span> <?php if($myinfo['messages_unread']>0) echo $myinfo['messages_unread']?></a></li>
+                    <li>
+                        <a href="<?php echo site_url('message/')?>"><span class="glyphicon glyphicon-envelope"></span> <?php if($myinfo['messages_unread']>0) echo $myinfo['messages_unread']?></a>
+                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class='glyphicon glyphicon-user'></span> <?php echo $this->session->userdata('username');?> <b class="caret"></b></a>
                         <ul class="dropdown-menu">
@@ -46,8 +48,8 @@
                         </ul>
                     </li>
                 @else
-                    <li><a href="/user/register">注册</a></li>
-                    <li><a href="/user/login">登入</a></li>
+                    <li><a href="/register">注册</a></li>
+                    <li><a href="/login">登入</a></li>
                 @endif
             </ul>
         </div><!--/.nav-collapse -->

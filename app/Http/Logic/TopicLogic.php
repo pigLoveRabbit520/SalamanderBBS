@@ -5,7 +5,7 @@ namespace App\Http\Logic;
 
 use Illuminate\Support\Facades\DB;
 
-class Topic
+class TopicLogic
 {
     // 贴子列表，无分页
     public function getTopicsListNoPage ($limit) {

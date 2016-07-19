@@ -16,4 +16,5 @@ return [
     'timespan' => '10',
     'words_limit' => '8000',
     'per_page_tag_num' => '25',
+    'salt_len' => 6,
 ];

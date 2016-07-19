@@ -10,7 +10,7 @@ namespace App\Http\Logic;
 
 use Illuminate\Support\Facades\DB;
 
-class Link
+class LinkLogic
 {
     public function getLatestLinks($limit = '')
     {

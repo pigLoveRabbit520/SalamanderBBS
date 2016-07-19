@@ -22,6 +22,12 @@ Route::get('/users', 'Home\UserController@index');
 
 Route::get('/user/{id}', 'Home\UserController@show');
 
+Route::get('/register', 'Home\UserController@register');
+
+Route::get('/login', 'Home\UserController@login');
+
+Route::post('/check', 'Home\UserController@checkUserInfo');
+
 Route::get('/tags', 'Home\TagController@index');
 
 Route::get('install', 'Home\InstallController@show');

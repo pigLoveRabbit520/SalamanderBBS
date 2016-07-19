@@ -10,7 +10,7 @@ namespace App\Http\Logic;
 
 use Illuminate\Support\Facades\DB;
 
-class Tag {
+class TagLogic {
     // tag分页列表，用Laravel分页类
     public function getTagList($limit)
     {

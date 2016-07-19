@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
-use App\Http\Logic\Tag;
+use App\Http\Logic\TagLogic;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -14,7 +14,7 @@ class TagController extends Controller
 {
     public function index() {
         $limit = Config::get('website.per_page_tag_num');
-        $data['tags'] = (new Tag())->getTagList($limit);
+        $data['tags'] = (new TagLogic())->getTagList($limit);
         $data['title'] = "标签列表";
         return view('home.tag_index', $data);
     }

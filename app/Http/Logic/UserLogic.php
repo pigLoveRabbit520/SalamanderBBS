@@ -8,9 +8,9 @@
 namespace App\Http\Logic;
 
 
-use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
-class User
+class UserLogic
 {
     /**
      * 获取最新用户名字
@@ -18,9 +18,7 @@ class User
      * @return mixed
      */
     public function getLatestUserName($uid) {
-        $res = DB::table('users')->select('username')
-            ->where('uid', $uid)->first();
-        return $res['username'];
+        return User::where('uid', $uid)->pluck('username');
     }
 
     public function getUsers($limit, $ord) {
@@ -30,8 +28,7 @@ class User
         if($ord == 'hot') {
             $obj = 'lastlogin';
         }
-        return DB::table('users')
-            ->select('uid', 'username', 'avatar')
+        return User::select(['uid', 'username', 'avatar'])
             ->take($limit)
             ->orderBy($obj)
             ->get();

@@ -11,7 +11,7 @@ namespace App\Http\Logic;
 
 use Illuminate\Support\Facades\DB;
 
-class Node
+class NodeLogic
 {
     public function getAllCates()
     {
