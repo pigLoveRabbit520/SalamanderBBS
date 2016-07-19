@@ -1,5 +1,9 @@
 @extends('home.common.base')
 
+@section('page_title')
+    {{ $title . '- ' . $settings['site_name'] }}
+@stop
+
 @section('main')
     <div class="container">
         <div class="row">
@@ -10,18 +14,20 @@
                     </div>
                     <div class="panel-body">
                         <ul class="list-unstyled">
-                            <?php if($tag_list) foreach($tag_list as $v){?>
-                            <span class="label label-grey"><a href="<?php echo url('tag_show','',$v['tag_title']);?>"><?php echo $v['tag_title'];?></a></span><span class="text-muted">X<?php echo $v['topics'];?></span>
-                            <?php }?>
+                            @if(!empty($tags))
+                                @foreach($tags as $v)
+                                    <span class="label label-grey"><a href="/tag/show/{{ $v['tag_title'] }}">{{ $v['tag_title'] }}</a></span><span class="text-muted">X{{ $v['topics'] }}</span>
+                                @endforeach
+                            @endif
                         </ul>
-                        <?php if($pagination):?><ul class="pagination"><?php echo $pagination;?></ul><?php endif?>
+                        {!! $tags->render() !!}
                     </div>
                 </div>
             </div><!-- /.col-md-8 -->
 
             <div class="col-md-4">
-                <?php $this->load->view('common/sidebar_login');?>
-                <?php $this->load->view('common/sidebar_ad');?>
+                @include('home.common.sidebar_login')
+                @include('home.common.sidebar_ad')
             </div><!-- /.col-md-4 -->
 
         </div><!-- /.row -->

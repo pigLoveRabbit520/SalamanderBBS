@@ -5,7 +5,6 @@ return [
     'show_captcha' => 'on',
     'site_close' => 'on',
     'site_close_msg' => '网站升级中，暂时关闭。',
-    'basic_folder' => '',
     'version' => false,
     'static' => 'white',
     'logo' => 'Start<span class=\'green\'>BBS</span>',
@@ -16,4 +15,5 @@ return [
     'home_page_num' => '20',
     'timespan' => '10',
     'words_limit' => '8000',
+    'per_page_tag_num' => '25',
 ];

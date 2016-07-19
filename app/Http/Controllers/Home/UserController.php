@@ -17,8 +17,7 @@ class UserController extends Controller
         return view('home.user', $data);
     }
 
-    public function login()
-    {
+    public function login() {
 
     }
 

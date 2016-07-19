@@ -32,3 +32,8 @@ $compiledPath = __DIR__.'/cache/compiled.php';
 if (file_exists($compiledPath)) {
     require $compiledPath;
 }
+
+/*
+ * 引入自定义全局函数
+ */
+require __DIR__.'/../app/functions.php';

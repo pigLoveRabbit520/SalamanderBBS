@@ -44,5 +44,9 @@ class NodeController extends Controller
         return view('home.node_index', $data);
     }
 
+    public function show() {
+
+    }
+
 
 }
