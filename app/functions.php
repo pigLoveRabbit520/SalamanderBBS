@@ -115,3 +115,22 @@ if (! function_exists('get_online_ip')) {
         }
     }
 }
+
+if (! function_exists('set_api_response')) {
+    /**
+     * ajax返回json数据
+     * @param $errcode
+     * @param $errmsg
+     * @param null $result 数据
+     * @param null $url 跳转url
+     * @return array
+     */
+    function set_api_response($errcode, $errmsg, $result = NULL, $url = NULL) {
+        return array(
+            'errcode' => $errcode,
+            'errmsg' => $errmsg,
+            'result' => $result,
+            'url' => $url,
+        );
+    }
+}

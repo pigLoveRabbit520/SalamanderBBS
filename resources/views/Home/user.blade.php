@@ -12,8 +12,8 @@
                         <ul class='user-list clearfix'>
                             <?php if($new_users) foreach($new_users as $v){?>
                             <li>
-                                <a href="/user/profile/{{ $v['uid'] }}" title="{{ $v['username'] }}">
-                                    <img class="img-rounded" alt="<?php echo $v['username'];?>" src="{{ $v['avatar'] }}.normal.png" />
+                                <a href="/user/profile/{{ $v['uid'] }}" title="{{ $v['nickname'] }}">
+                                    <img class="img-rounded" alt="<?php echo $v['nickname'];?>" src="{{ $v['avatar'] }}.normal.png" />
                                 </a></li>
                             <?php }?>
                         </ul>
@@ -27,8 +27,8 @@
                         <ul class='user-list clearfix'>
                             <?php if($hot_users) foreach($hot_users as $v){?>
                             <li>
-                                <a href="user/profile/{{ $v['uid'] }}"  title="{{ $v['username'] }}">
-                                    <img class="img-rounded" alt="<?php echo $v['username'];?>" src="{{ $v['avatar'] }}normal.png" />
+                                <a href="user/profile/{{ $v['uid'] }}"  title="{{ $v['nickname'] }}">
+                                    <img class="img-rounded" alt="<?php echo $v['nickname'];?>" src="{{ $v['avatar'] }}normal.png" />
                                 </a></li>
                             <?php }?>
                         </ul>

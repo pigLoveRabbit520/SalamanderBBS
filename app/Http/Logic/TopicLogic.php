@@ -9,8 +9,8 @@ class TopicLogic
 {
     // 贴子列表，无分页
     public function getTopicsListNoPage ($limit) {
-        $res = DB::table('topics')->select('topics.*', 'b.username',
-            'b.avatar', 'c.username as rname', 'd.cname')
+        $res = DB::table('topics')->select('topics.*', 'b.nickname',
+            'b.avatar', 'c.nickname as rname', 'd.cname')
             ->where('topics.is_hidden', 0)
             ->leftJoin('users as b', 'b.uid', '=', 'topics.uid')
             ->leftJoin('users as c', 'c.uid', '=', 'topics.ruid')
@@ -28,7 +28,7 @@ class TopicLogic
      */
     public function getTopicsListByNodeIds ($limit, $nodeIds) {
         return DB::table('topics as a')
-            ->select('a.topic_id', 'a.title', 'a.node_id', 'a.updatetime', 'b.uid', 'b.username')
+            ->select('a.topic_id', 'a.title', 'a.node_id', 'a.updatetime', 'b.uid', 'b.nickname')
             ->leftJoin('users as b', 'b.uid', '=', 'a.uid')
             ->whereIn('node_id', $nodeIds)
             ->orderBy('a.updatetime','desc')

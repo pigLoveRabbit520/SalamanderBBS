@@ -39,8 +39,6 @@ class NodeController extends Controller
         $data['new_users'] = (new UserLogic())->getUsers(15, 'new');
         // 最新贴子列表
         $data['new_topics'] = (new TopicLogic())->getLatestTopics(10);
-        // action
-        $data['action'] = 'node';
         return view('home.node_index', $data);
     }
 

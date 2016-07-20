@@ -21,7 +21,7 @@
                                         </span>
                                     </div>
                                     <a class="media-left" href="/user/profile/{{ $v['uid'] }}">
-                                        <img class="img-rounded medium" src="" alt="{{ $v['username'] }} medium avatar">
+                                        <img class="img-rounded medium" src="" alt="{{ $v['nickname'] }} medium avatar">
                                     </a>
                                     <div class="media-body">
                                         <h2 class="media-heading topic-list-heading">
@@ -32,7 +32,7 @@
                                                 <a href="/node/show/{{ $v['node_id'] }}">{{ $v['cname'] }}</a>
                                             </span>&nbsp;•&nbsp;
                                             <span>
-                                                <a href="/user/profile/{{ $v['uid'] }}">{{ $v['username'] }}</a>
+                                                <a href="/user/profile/{{ $v['uid'] }}">{{ $v['nickname'] }}</a>
                                             </span>&nbsp;•&nbsp;
                                             <span>{{ $v['updatetime'] }}</span>&nbsp;•&nbsp;
                                             @if(!empty($v['rname']))

@@ -56,8 +56,8 @@
                         <ul class="media-list">
                             @foreach($catelist[$v['node_id']] as $k=>$c)
                             <li class="media section">
-                                <a class="pull-left" href="<?php echo url('node_show',$v['node_id']);?>">
-                                    <img class="img-rounded" src="{{ $c['ico'] }}" alt="<?php echo $c['cname'];?>">
+                                <a class="pull-left" href="/node/{{ $v['node_id'] }}">
+                                    <img class="img-rounded" src="{{ $c['ico'] }}" alt="{{  $c['cname'] }}">
                                 </a>
                                 <span class="pull-right text-right">
                                     <p>/今日</p>

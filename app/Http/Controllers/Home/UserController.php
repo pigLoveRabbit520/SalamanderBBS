@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Logic\UserLogic;
+use App\Http\Requests\RegisterRequest;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -33,7 +36,14 @@ class UserController extends Controller
      * 验证用户注册参数
      */
     public function checkUserInfo() {
+        Input::merge(array_map('trim', Input::all()));
+        $v = Validator::make(Input::all(),
+            (new RegisterRequest())->rules());
+        if ($v->fails()) {
+            set_api_response(1, "注册失败", $v->messages());
+        } else {
 
+        }
     }
 
 

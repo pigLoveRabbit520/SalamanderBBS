@@ -1,5 +1,9 @@
 @extends('home.common.base')
 
+@section('page_title')
+    {{ $title . '- ' . $settings['site_name'] }}
+@stop
+
 @section('main')
     <div class="container">
         <div class="row">
@@ -12,16 +16,16 @@
                         <form action="/check" class="form-horizontal" id="new_user" method="post" >
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="form-group">
-                                <label class="col-sm-2 control-label" for="user_nickname">用户名</label>
+                                <label class="col-sm-2 control-label" for="user_email">邮箱</label>
                                 <div class="col-sm-5">
-                                    <input class="form-control" id="user_nickname" name="username" type="text" value="" />
+                                    <input class="form-control" id="user_email" name="email" size="50" type="email" value="" />
                                     <span class="help-block red"></span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label" for="user_email">电子邮件</label>
+                                <label class="col-sm-2 control-label" for="user_nickname">昵称</label>
                                 <div class="col-sm-5">
-                                    <input class="form-control" id="user_email" name="email" size="50" type="email" value="" />
+                                    <input class="form-control" id="user_nickname" name="nickname" type="text" value="" />
                                     <span class="help-block red"></span>
                                 </div>
                             </div>

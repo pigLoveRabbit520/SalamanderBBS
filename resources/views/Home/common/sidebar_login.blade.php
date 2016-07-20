@@ -49,8 +49,8 @@
         <h4>{{ $settings['site_name'] }}</h4>
     </div>
     <div class="panel-body">
-        <a href="/user/register" class="btn btn-default">现在注册</a> 已注册请
-        <a href="/user/login" class="startbbs">登入</a>
+        <a href="/register" class="btn btn-default">现在注册</a> 已注册请
+        <a href="/login" class="startbbs">登入</a>
     </div>
 </div>
 @endif

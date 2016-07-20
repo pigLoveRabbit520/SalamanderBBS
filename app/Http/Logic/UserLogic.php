@@ -18,7 +18,7 @@ class UserLogic
      * @return mixed
      */
     public function getLatestUserName($uid) {
-        return User::where('uid', $uid)->pluck('username');
+        return User::where('uid', $uid)->pluck('nickname');
     }
 
     public function getUsers($limit, $ord) {
@@ -28,7 +28,7 @@ class UserLogic
         if($ord == 'hot') {
             $obj = 'lastlogin';
         }
-        return User::select(['uid', 'username', 'avatar'])
+        return User::select(['uid', 'nickname', 'avatar'])
             ->take($limit)
             ->orderBy($obj)
             ->get();

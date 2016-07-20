@@ -36,7 +36,7 @@ class AppServiceProvider extends ServiceProvider
                ->first();
             $data['myinfo']=array(
                 'uid'=> session('uid'),
-                'username'=> session('username'),
+                'nickname'=> session('nickname'),
                 'avatar'=> session('avatar'),
                 'group_type'=> session('group_type'),
                 'gid'=> session('gid'),
