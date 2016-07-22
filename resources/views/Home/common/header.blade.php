@@ -48,8 +48,8 @@
                         </ul>
                     </li>
                 @else
-                    <li><a href="/register">注册</a></li>
-                    <li><a href="/login">登入</a></li>
+                    <li><a href="/user/register">注册</a></li>
+                    <li><a href="/user/login">登入</a></li>
                 @endif
             </ul>
         </div><!--/.nav-collapse -->

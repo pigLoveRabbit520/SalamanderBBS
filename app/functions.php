@@ -97,7 +97,12 @@ if (! function_exists('my_sb_substr')) {
 }
 
 if (! function_exists('password_dohash')) {
-    /*生成密码*/
+    /**
+     * 加密密码
+     * @param $password
+     * @param $salt
+     * @return string
+     */
     function password_dohash($password, $salt)
     {
         return md5(md5($password).$salt);
@@ -105,7 +110,10 @@ if (! function_exists('password_dohash')) {
 }
 
 if (! function_exists('get_online_ip')) {
-    ////获得本地真实IP
+    /**
+     * 获得本地真实IP
+     * @return mixed
+     */
     function get_online_ip() {
         $ip_json = @file_get_contents("http://ip.taobao.com/service/getIpInfo.php?ip=myip");
         $ip_arr = json_decode(stripslashes($ip_json), 1);

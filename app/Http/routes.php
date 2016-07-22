@@ -10,6 +10,8 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+use Mews\Captcha\Facades\Captcha;
+
 Route::pattern('id', '[0-9]+');
 
 Route::get('/', 'Home\IndexController@index');
@@ -22,11 +24,15 @@ Route::get('/users', 'Home\UserController@index');
 
 Route::get('/user/{id}', 'Home\UserController@show');
 
-Route::get('/register', 'Home\UserController@register');
+Route::get('/user/register', 'Home\UserController@register');
 
-Route::get('/login', 'Home\UserController@login');
+Route::get('/user/login', 'Home\UserController@login');
 
-Route::post('/check', 'Home\UserController@checkUserInfo');
+Route::post('/user/check', 'Home\UserController@checkUserInfo');
+
+Route::get('/getCaptcha', function() {
+    return Captcha::create('default');
+});
 
 Route::get('/tags', 'Home\TagController@index');
 

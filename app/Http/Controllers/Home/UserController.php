@@ -37,12 +37,24 @@ class UserController extends Controller
      */
     public function checkUserInfo() {
         Input::merge(array_map('trim', Input::all()));
-        $v = Validator::make(Input::all(),
+        $validator = Validator::make(Input::all(),
             (new RegisterRequest())->rules());
-        if ($v->fails()) {
-            set_api_response(1, "注册失败", $v->messages());
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
         } else {
-
+            $password = Input::get('password');
+            $salt = str_random(6);
+            $data = array(
+                'nickname' => strip_tags(Input::get('nickname')),
+                'password' => password_dohash($password, $salt),
+                'salt' => $salt,
+                'email' => Input::get('email'),
+                'credit' => Config::get('userset.credit_start'),
+                'ip' => get_online_ip(),
+                'gid' => 3,
+                'reg_time' => time(),
+                'is_active' => 1
+            );
         }
     }
 
