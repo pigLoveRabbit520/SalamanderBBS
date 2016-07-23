@@ -1,17 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Home;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Config;
 
 class BaseController extends Controller
 {
-    var $nodes	= '';
-    var $pages = '';
     function __construct() {
         //判断关闭
         if(Config::get('website.site_close') == 'off') {
@@ -25,5 +22,16 @@ class BaseController extends Controller
 //        $data['themes']=base_url('static/'.$this->config->item('themes').'/');
 //        //全局输出
 //        $this->load->vars($data);
+    }
+
+    protected function showMessage($message= '', $url = '', $status = 2, $heading = '提示信息', $time = 1800) {
+        $data = [
+            'message' => $message,
+            'url' => $url,
+            'status' => $status,
+            '$heading' => $heading,
+            'time' => $time
+        ];
+        return view('errors.message', $data);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Logic\NodeLogic;
 use App\Http\Logic\TopicLogic;
 use App\Http\Logic\UserLogic;
@@ -10,7 +11,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
-class NodeController extends Controller
+class NodeController extends BaseController
 {
     public function index() {
         $data['title'] = '版块列表';

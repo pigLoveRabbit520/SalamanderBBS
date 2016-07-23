@@ -28,17 +28,8 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $table = 'users';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = ['name', 'email', 'password'];
-
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
-    protected $hidden = ['password', 'remember_token'];
+    // 关闭时间戳
+    public $timestamps = false;
+    // 黑名单
+    protected $guarded = ['uid'];
 }

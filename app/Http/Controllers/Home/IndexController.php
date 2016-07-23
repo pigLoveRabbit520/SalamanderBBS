@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Logic\LinkLogic;
 use App\Http\Logic\NodeLogic;
 use App\Http\Logic\TopicLogic;

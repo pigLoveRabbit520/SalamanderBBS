@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Logic\TagLogic;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
 
-class TagController extends Controller
+class TagController extends BaseController
 {
     public function index() {
         $limit = Config::get('website.per_page_tag_num');
