@@ -13,7 +13,7 @@
                         <h3 class="panel-title">注册用户</h3>
                     </div>
                     <div class="panel-body">
-                        <form class="form-horizontal" id="new_user" method="post" >
+                        <form class="form-horizontal" id="new_user" method="post" action="/user/check">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="user_nickname">昵称</label>
@@ -47,18 +47,21 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label" for="captcha_code">验证码</label>
                                     <div class="col-sm-3">
-                                        <input class="form-control" id="captcha_code" name="captcha_code" size="4" type="text" value="" />
-                                        <span class="help-block red">{{ $errors->first('captcha_code') }}</span>
+                                        <input class="form-control" id="captcha_code" name="captcha" size="4" type="text" value="" />
+                                        <span class="help-block red">{{ $errors->first('captcha') }}</span>
                                     </div>
                                     <div class="col-sm-4">
-                                        <a href="javascript:reloadcode();" title="更换验证码"><img src="/getCaptcha" name="checkCodeImg" id="checkCodeImg" border="0" /></a> <a href="javascript:reloadcode();">换一张</a>
+                                        <a href="javascript:reloadcode();" title="更换验证码">
+                                            <img src="/getCaptcha" id="checkCodeImg" border="0" />
+                                        </a>
+                                        <a href="javascript:reloadcode();">换一张</a>
                                     </div>
                                 </div>
                                 <script language="javascript">
                                     // 刷新图片
-                                    function reloadcode() {//刷新验证码函数
+                                    function reloadcode() {
                                         var verify = document.getElementById('checkCodeImg');
-                                        verify.setAttribute('src', 'ff' + Math.random());
+                                        verify.setAttribute('src', '/getCaptcha?r' + Math.random());
                                     }
                                 </script>
                             @endif

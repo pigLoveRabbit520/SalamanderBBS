@@ -104,6 +104,12 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'nickname' => '昵称',
+        'email' => '邮箱',
+        'password' => '密码',
+        'password_confirm' => '密码确认',
+        'captcha' => '验证码',
+    ],
 
 ];

@@ -37,8 +37,9 @@ class UserController extends Controller
      */
     public function checkUserInfo() {
         Input::merge(array_map('trim', Input::all()));
+        $request = new RegisterRequest();
         $validator = Validator::make(Input::all(),
-            (new RegisterRequest())->rules());
+            $request->rules(), $request->messages());
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator);
         } else {

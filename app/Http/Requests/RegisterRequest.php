@@ -24,11 +24,23 @@ class RegisterRequest extends Request
     public function rules()
     {
         return [
-            'nickname' => 'required|min:5|max:50|email|unique:users',
+            'nickname' => 'required|min:2|max:20|unique:users',
             'email' => 'required|min:5|max:50|email|unique:users',
             'password' => 'required|min:6|max:18|alpha_num',
             'password_confirm' => 'required|same:password',
-            'captcha_code' => 'required|size:4|alpha_num|'
+            'captcha' => 'sometimes|required|size:4|alpha_num|captcha'
+        ];
+    }
+
+    public function messages() {
+        return [
+            'required' => ':attribute必填',
+            'email' => '邮箱格式错误！',
+            'alpha_num' => ':attribute必须由数字和字母组成',
+            'nickname.unique' => '昵称有人家用了哈',
+            'unique' => '邮箱已注册',
+            'password_confirm.same' => '两次密码不一致',
+            'captcha.captcha' => '验证码错误，请重试',
         ];
     }
 }
