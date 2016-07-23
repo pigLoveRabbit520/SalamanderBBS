@@ -24,12 +24,12 @@ class BaseController extends Controller
 //        $this->load->vars($data);
     }
 
-    protected function showMessage($message= '', $url = '', $status = 2, $heading = '提示信息', $time = 1800) {
+    protected function showMessage($message= '', $url = '', $status = 2, $heading = '提示信息', $time = 2000) {
         $data = [
             'message' => $message,
             'url' => $url,
             'status' => $status,
-            '$heading' => $heading,
+            'heading' => $heading,
             'time' => $time
         ];
         return view('errors.message', $data);

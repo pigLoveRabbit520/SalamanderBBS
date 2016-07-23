@@ -37,35 +37,33 @@ class UserController extends BaseController
      * 验证用户注册参数
      */
     public function checkUserInfo() {
-        return $this->showMessage('好好学习');
-//        Input::merge(array_map('trim', Input::all()));
-//        $request = new RegisterRequest();
-//        $validator = Validator::make(Input::all(),
-//            $request->rules(), $request->messages());
-//        if ($validator->fails()) {
-//            return redirect()->back()->withErrors($validator);
-//        } else {
-//            $password = Input::get('password');
-//            $salt = strtolower(str_random(6));
-//            $data = array(
-//                'nickname' => strip_tags(Input::get('nickname')),
-//                'password' => password_dohash($password, $salt),
-//                'salt' => $salt,
-//                'email' => Input::get('email'),
-//                'credit' => Config::get('userset.credit_start'),
-//                'ip' => get_online_ip(),
-//                'gid' => 3,
-//                'reg_time' => time(),
-//                'is_active' => 1
-//            );
-//            $user = User::create($data);
-//
-//            if($user && $user->uid) {
-//                return redirect()->intended('/');
-//            } else {
-//                echo "注册失败！";
-//            }
-//        }
+        Input::merge(array_map('trim', Input::all()));
+        $request = new RegisterRequest();
+        $validator = Validator::make(Input::all(),
+            $request->rules(), $request->messages());
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        } else {
+            $password = Input::get('password');
+            $salt = strtolower(str_random(6));
+            $data = array(
+                'nickname' => strip_tags(Input::get('nickname')),
+                'password' => password_dohash($password, $salt),
+                'salt' => $salt,
+                'email' => Input::get('email'),
+                'credit' => Config::get('userset.credit_start'),
+                'ip' => get_online_ip(),
+                'gid' => 3,
+                'reg_time' => time(),
+                'is_active' => 1
+            );
+            $user = User::create($data);
+            if($user && $user->uid) {
+                return redirect()->intended('/');
+            } else {
+                return $this->showMessage('注册失败');
+            }
+        }
     }
 
 
