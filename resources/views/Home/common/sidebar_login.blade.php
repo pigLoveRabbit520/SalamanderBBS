@@ -4,14 +4,14 @@
         <div class="row">
             <div class="col-md-5">
                 <a href="/user/profile/{{ $myinfo['uid'] }}>">
-                    <img alt="{{ $myinfo['username'] }} large avatar" class="img-rounded" src="{{ $myinfo['avatar'] }}" />
+                    <img alt="{{ $myinfo['nickname'] }} large avatar" class="img-rounded" src="{{ $myinfo['avatar'] }}" />
                 </a>
             </div>
             <div class="col-md-7">
 	            <ul class="list-unstyled">
 	            	<li>
-                        <a href="/user/profile/{{ $myinfo['uid'] }}" title="{{ $myinfo['username'] }}">
-                            {{ $myinfo['username'] }}
+                        <a href="/user/profile/{{ $myinfo['uid'] }}" title="{{ $myinfo['nickname'] }}">
+                            {{ $myinfo['nickname'] }}
                         </a>
                     </li>
 	            	<li>用户组：{{ $myinfo['group_name'] }}</li>

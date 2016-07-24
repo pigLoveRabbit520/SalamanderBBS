@@ -37,12 +37,7 @@ class UserController extends MyController
         $request = new UserRequest();
         $validator = Validator::make(Input::all(),
             $request->getRegisterRules(), $request->messages());
-        $validator->sometimes('captcha',
-            'required|size:4|alpha_num|captcha',
-            function($input) {
-                return Config::get('website.show_captcha');
-            }
-        );
+        $request->setCaptcha($validator);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator);
         } else {
@@ -80,19 +75,14 @@ class UserController extends MyController
      * 验证登录参数
      */
     public function verify() {
-        if(Session::get('uid')) {
+        if(session('uid')) {
             return redirect()->back();
         }
         Input::merge(array_map('trim', Input::all()));
         $request = new UserRequest();
         $validator = Validator::make(Input::all(),
             $request->getLoginRules(), $request->messages());
-        $validator->sometimes('captcha',
-            'required|size:4|alpha_num|captcha',
-            function($input) {
-                return Config::get('website.show_captcha');
-            }
-        );
+        $request->setCaptcha($validator);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator);
         } else {

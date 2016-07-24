@@ -26,7 +26,7 @@
 								<label class="col-md-2 control-label" for="user_password">密码</label>
 								<div class="col-md-6">
 									<input class="form-control" id="user_password" name="password" size="50" type="password" value=""/>
-									<span class="help-block red">{{ $errors->first('passowrd') }}</span>
+									<span class="help-block red">{{ $errors->first('password') }}</span>
 								</div>
 							</div>
 							@if(Config::get('website.show_captcha') == 'on')

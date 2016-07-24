@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use Illuminate\Support\Facades\Config;
 
 class UserRequest extends Request
 {
@@ -60,5 +61,18 @@ class UserRequest extends Request
             'password_confirm.same' => '两次密码不一致',
             'captcha.captcha' => '验证码错误，请重试',
         ];
+    }
+
+    /**
+     * 设置验证码验证规则
+     * @param $validator
+     */
+    public function setCaptcha($validator) {
+        $validator->sometimes('captcha',
+            'required|size:4|alpha_num|captcha',
+            function($input) {
+                return Config::get('website.show_captcha');
+            }
+        );
     }
 }

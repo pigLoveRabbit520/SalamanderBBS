@@ -31,17 +31,17 @@
             <ul class="nav navbar-nav navbar-right">
                 @if(session('uid'))
                     <li>
-                        <a href="/message"><span class="glyphicon glyphicon-envelope"></span> <?php if($myinfo['messages_unread']>0) echo $myinfo['messages_unread']?></a>
+                        <a href="/message"><span class="glyphicon glyphicon-envelope"></span> <?php if($myinfo['messages_unread']>0) echo $myinfo['messages_unread'];?></a>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class='glyphicon glyphicon-user'></span> <?php echo $this->session->userdata('username');?> <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class='glyphicon glyphicon-user'></span> {{ $myinfo['nickname'] }} <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="user/profile/{{ session('uid') }}">个人主页</a></li>
                             <li><a href="/message">站内信</a></li>
                             <li><a href="/settings">设置</a></li>
-                            <?php if($this->auth->is_admin()){ ?>
+                            @if(session('uid'))
                             <li><a href="/admin/login">管理后台</a></li>
-                            <?php }?>
+                            @endif
                             <li class="divider"></li>
                             <!--<li class="dropdown-header">Nav header</li>-->
                             <li><a href="/user/logout">退出</a></li>
