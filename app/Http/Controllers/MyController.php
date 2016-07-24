@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Config;
 
-class BaseController extends Controller
+class MyController extends Controller
 {
     function __construct() {
         //判断关闭

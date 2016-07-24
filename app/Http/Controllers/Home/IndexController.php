@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
-use App\Http\Controllers\BaseController;
+use App\Http\Controllers\MyController;
 use App\Http\Logic\LinkLogic;
 use App\Http\Logic\NodeLogic;
 use App\Http\Logic\TopicLogic;
@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
-class IndexController extends BaseController
+class IndexController extends MyController
 {
     public function index() {
         $homePageNum = Config::get('home_page_num') ? Config::get('home_page_num') : 20;

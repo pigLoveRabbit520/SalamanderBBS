@@ -28,7 +28,6 @@ class RegisterRequest extends Request
             'email' => 'required|min:5|max:50|email|unique:users',
             'password' => 'required|min:6|max:18|alpha_num',
             'password_confirm' => 'required|same:password',
-            'captcha' => 'sometimes|required|size:4|alpha_num|captcha'
         ];
     }
 

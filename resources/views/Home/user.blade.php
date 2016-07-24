@@ -10,12 +10,15 @@
                     </div>
                     <div class="panel-body">
                         <ul class='user-list clearfix'>
-                            <?php if($new_users) foreach($new_users as $v){?>
+                            @if(!empty($new_users))
+                            @foreach($new_users as $v)
                             <li>
                                 <a href="/user/profile/{{ $v['uid'] }}" title="{{ $v['nickname'] }}">
-                                    <img class="img-rounded" alt="<?php echo $v['nickname'];?>" src="{{ $v['avatar'] }}.normal.png" />
-                                </a></li>
-                            <?php }?>
+                                    <img class="img-rounded" alt="{{ $v['nickname'] }}" src="{{ $v['avatar'] }}normal.png" />
+                                </a>
+                            </li>
+                            @endforeach
+                            @endif
                         </ul>
                     </div>
                 </div>

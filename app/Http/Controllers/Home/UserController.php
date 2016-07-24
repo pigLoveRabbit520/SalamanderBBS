@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
-use App\Http\Controllers\BaseController;
+use App\Http\Controllers\MyController;
 use App\Http\Logic\UserLogic;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 
-class UserController extends BaseController
+class UserController extends MyController
 {
     public function index() {
         $data['title'] = '用户';
@@ -41,6 +41,12 @@ class UserController extends BaseController
         $request = new RegisterRequest();
         $validator = Validator::make(Input::all(),
             $request->rules(), $request->messages());
+        $validator->sometimes('captcha',
+            'required|size:4|alpha_num|captcha',
+            function($input) {
+                return Config::get('website.show_captcha');
+            }
+        );
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator);
         } else {
@@ -58,7 +64,7 @@ class UserController extends BaseController
                 'is_active' => 1
             );
             $user = User::create($data);
-            if($user && $user->uid) {
+            if($user) {
                 return redirect()->intended('/');
             } else {
                 return $this->showMessage('注册失败');
