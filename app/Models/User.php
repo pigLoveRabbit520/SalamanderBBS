@@ -28,6 +28,8 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $table = 'users';
 
+    protected $primaryKey = 'uid';
+
     // 关闭时间戳
     public $timestamps = false;
     // 黑名单

@@ -12,6 +12,7 @@ use App\Http\Logic\UserLogic;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 class IndexController extends MyController
 {

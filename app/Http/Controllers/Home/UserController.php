@@ -6,10 +6,12 @@ use App\Http\Controllers\MyController;
 use App\Http\Logic\UserLogic;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -24,9 +26,6 @@ class UserController extends MyController
     }
 
     public function register() {
-        if (session('uid')) {
-            return redirect('/');
-        }
         return view('home.register')->with('title', '注册新用户');
     }
 
@@ -37,7 +36,7 @@ class UserController extends MyController
         Input::merge(array_map('trim', Input::all()));
         $request = new UserRequest();
         $validator = Validator::make(Input::all(),
-            $request->rules(), $request->messages());
+            $request->getRegisterRules(), $request->messages());
         $validator->sometimes('captcha',
             'required|size:4|alpha_num|captcha',
             function($input) {
@@ -62,7 +61,7 @@ class UserController extends MyController
             );
             $user = User::create($data);
             if($user) {
-                return redirect()->intended('/');
+                return redirect('user/login');
             } else {
                 return $this->showMessage('注册失败');
             }
@@ -81,10 +80,13 @@ class UserController extends MyController
      * 验证登录参数
      */
     public function verify() {
+        if(Session::get('uid')) {
+            return redirect()->back();
+        }
         Input::merge(array_map('trim', Input::all()));
         $request = new UserRequest();
         $validator = Validator::make(Input::all(),
-            $request->rules(), $request->messages());
+            $request->getLoginRules(), $request->messages());
         $validator->sometimes('captcha',
             'required|size:4|alpha_num|captcha',
             function($input) {
@@ -96,17 +98,25 @@ class UserController extends MyController
         } else {
             $email = Input::get('email');
             $password = Input::get('password');
-            if(UserLogic::verifyUser($email, $password)) {
-                $data = User::where('email', $email)->first();
-                session('uid', $data['uid']);
-                // 更新积分
-                if( time()- @$data['lastlogin'] > 86400){
-                    User::where('uid', $data['uid'])->incrementing
+            if( (new UserLogic())->verifyUser($email, $password) ) {
+                $user = User::where('email', $email)->first();
+                Session::put('uid', $user->uid);
+                DB::beginTransaction();
+                try {
+                    // 更新积分
+                    if(time() - $user->lastlogin > 86400){
+                        $user->lastlogin = $user->lastlogin + Config::get('userset.credit_login');
+                    }
+                    $user->lastlogin = time();
+                    $user->save();
+                    DB::commit();
+                    return redirect('/');
+                } catch (Exception $e) {
+                    DB::rollback();
+                    throw $e;
                 }
-                // 更新最后登录时间
-                $this->user_m->update_user($uid,array('lastlogin'=>time()));
             } else {
-                $this->showMessage('用户名或邮箱错误!!');
+                return $this->showMessage('用户名或邮箱错误!!');
             }
         }
     }

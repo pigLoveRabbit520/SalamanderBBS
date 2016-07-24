@@ -40,11 +40,11 @@ class UserLogic
      * @param $password 密码
      * @return bool
      */
-    public static function verifyUser($email, $password) {
-        $data = User::where('email', $email)->first(['password', 'salt']);
-        if($data) {
-            $compare = password_dohash($password, $data['salt']);
-            return $password == $compare;
+    public function verifyUser($email, $password) {
+        $user = User::where('email', $email)->first();
+        if($user) {
+            $compare = password_dohash($password, $user['salt']);
+            return $compare == $user['password'];
         } else {
             return false;
         }

@@ -19,22 +19,22 @@
 								<label class="col-md-2 control-label" for="user_nickname">邮箱</label>
 								<div class="col-md-6">
 									<input class="form-control" name="email" size="50" type="text" value=""/>
-                                    <span class="help-block red"></span>
+                                    <span class="help-block red">{{ $errors->first('email') }}</span>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-md-2 control-label" for="user_password">密码</label>
 								<div class="col-md-6">
 									<input class="form-control" id="user_password" name="password" size="50" type="password" value=""/>
-									<span class="help-block red"></span>
+									<span class="help-block red">{{ $errors->first('passowrd') }}</span>
 								</div>
 							</div>
 							@if(Config::get('website.show_captcha') == 'on')
 							<div class="form-group">
 								<label class="col-md-2 control-label" for="captcha_code">验证码</label>
 								<div class="col-md-4">
-									<input class="form-control" id="captcha_code" name="captcha_code" size="50" type="text"  value=""/>
-									<span class="help-block red"></span>
+									<input class="form-control" id="captcha_code" name="captcha" size="50" type="text"  value=""/>
+									<span class="help-block red">{{ $errors->first('captcha') }}</span>
 								</div>
 								<div class="col-md-3">
 									<a href="javascript:reloadcode();" title="更换验证码"><img src="/getCaptcha" name="checkCodeImg" id="checkCodeImg" border="0" /></a>&nbsp;
