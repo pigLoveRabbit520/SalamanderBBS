@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\MyController;
 use App\Http\Logic\UserLogic;
-use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -35,7 +35,7 @@ class UserController extends MyController
      */
     public function checkUserInfo() {
         Input::merge(array_map('trim', Input::all()));
-        $request = new RegisterRequest();
+        $request = new UserRequest();
         $validator = Validator::make(Input::all(),
             $request->rules(), $request->messages());
         $validator->sometimes('captcha',
@@ -75,7 +75,40 @@ class UserController extends MyController
         }
         $data['title'] = '用户登录';
         return view('home.login', $data);
+    }
 
+    /**
+     * 验证登录参数
+     */
+    public function verify() {
+        Input::merge(array_map('trim', Input::all()));
+        $request = new UserRequest();
+        $validator = Validator::make(Input::all(),
+            $request->rules(), $request->messages());
+        $validator->sometimes('captcha',
+            'required|size:4|alpha_num|captcha',
+            function($input) {
+                return Config::get('website.show_captcha');
+            }
+        );
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        } else {
+            $email = Input::get('email');
+            $password = Input::get('password');
+            if(UserLogic::verifyUser($email, $password)) {
+                $data = User::where('email', $email)->first();
+                session('uid', $data['uid']);
+                // 更新积分
+                if( time()- @$data['lastlogin'] > 86400){
+                    User::where('uid', $data['uid'])->incrementing
+                }
+                // 更新最后登录时间
+                $this->user_m->update_user($uid,array('lastlogin'=>time()));
+            } else {
+                $this->showMessage('用户名或邮箱错误!!');
+            }
+        }
     }
 
 

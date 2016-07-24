@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class RegisterRequest extends Request
+class UserRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,11 +23,30 @@ class RegisterRequest extends Request
      */
     public function rules()
     {
+
+    }
+
+    /**
+     * 注册验证规则
+     * @return array
+     */
+    public function getRegisterRules() {
         return [
             'nickname' => 'required|min:2|max:20|unique:users',
             'email' => 'required|min:5|max:50|email|unique:users',
             'password' => 'required|min:6|max:18|alpha_num',
             'password_confirm' => 'required|same:password',
+        ];
+    }
+
+    /**
+     * 登录验证规则
+     * @return array
+     */
+    public function getLoginRules() {
+        return [
+            'email' => 'required|min:5|max:50|email|unique:users',
+            'password' => 'required|min:6|max:18|alpha_num',
         ];
     }
 

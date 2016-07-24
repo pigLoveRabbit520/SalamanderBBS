@@ -33,4 +33,27 @@ class UserLogic
             ->orderBy($obj)
             ->get();
     }
+
+    /**
+     * 判断是否登录参数正确
+     * @param $email 邮箱
+     * @param $password 密码
+     * @return bool
+     */
+    public static function verifyUser($email, $password) {
+        $data = User::where('email', $email)->first(['password', 'salt']);
+        if($data) {
+            $compare = password_dohash($password, $data['salt']);
+            return $password == $compare;
+        } else {
+            return false;
+        }
+    }
+
+
+    public static function updateCredit($uid, $credit) {
+
+    }
+
+
 }

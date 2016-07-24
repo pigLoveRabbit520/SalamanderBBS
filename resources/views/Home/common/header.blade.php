@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/"><?php echo $settings['logo'];  ?></a>
+            <a class="navbar-brand" href="/">{!! $settings['logo'] !!}</a>
         </div>
 
         <div class="navbar-collapse collapse">

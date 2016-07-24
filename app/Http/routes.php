@@ -30,6 +30,8 @@ Route::get('/user/login', 'Home\UserController@login');
 
 Route::post('/user/check', 'Home\UserController@checkUserInfo');
 
+Route::post('/user/verify', 'Home\UserController@verify');
+
 Route::get('/tags', 'Home\TagController@index');
 
 Route::get('/topic/add', 'Home\TopicController@add');

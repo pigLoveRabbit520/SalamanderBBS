@@ -13,12 +13,12 @@
 						<h3 class="panel-title">请登录</h3>
 					</div>
 					<div class="panel-body">
-						<form accept-charset="UTF-8" action="/user/login" class="form-horizontal" id="new_user" method="post" novalidate="novalidate">
+						<form accept-charset="UTF-8" action="/user/verify" class="form-horizontal" id="new_user" method="post">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							<div class="form-group">
-								<label class="col-md-2 control-label" for="user_nickname">用户名</label>
+								<label class="col-md-2 control-label" for="user_nickname">邮箱</label>
 								<div class="col-md-6">
-									<input class="form-control" id="user_nickname" name="username" size="50" type="text" value=""/>
+									<input class="form-control" name="email" size="50" type="text" value=""/>
                                     <span class="help-block red"></span>
 								</div>
 							</div>
@@ -29,7 +29,7 @@
 									<span class="help-block red"></span>
 								</div>
 							</div>
-							@if(Config::get('show_captcha') == 'on')
+							@if(Config::get('website.show_captcha') == 'on')
 							<div class="form-group">
 								<label class="col-md-2 control-label" for="captcha_code">验证码</label>
 								<div class="col-md-4">
