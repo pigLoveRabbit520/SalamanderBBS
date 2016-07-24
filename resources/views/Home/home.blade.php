@@ -21,7 +21,7 @@
                                         </span>
                                     </div>
                                     <a class="media-left" href="/user/profile/{{ $v['uid'] }}">
-                                        <img class="img-rounded medium" src="" alt="{{ $v['nickname'] }} medium avatar">
+                                        <img class="img-rounded medium" src="{{ $v['avatar'] }}normal.png" alt="{{ $v['nickname'] }} medium avatar">
                                     </a>
                                     <div class="media-body">
                                         <h2 class="media-heading topic-list-heading">
@@ -34,7 +34,7 @@
                                             <span>
                                                 <a href="/user/profile/{{ $v['uid'] }}">{{ $v['nickname'] }}</a>
                                             </span>&nbsp;•&nbsp;
-                                            <span>{{ $v['updatetime'] }}</span>&nbsp;•&nbsp;
+                                            <span>{{ friendly_date($v['updatetime']) }}</span>&nbsp;•&nbsp;
                                             @if(!empty($v['rname']))
                                             <span>最后回复来自 <a href="user/profile/{{ $v['ruid'] }}">{{ $v['rname'] }}</a></span>
                                             @else

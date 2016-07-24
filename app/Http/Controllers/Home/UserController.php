@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends MyController
@@ -20,10 +21,6 @@ class UserController extends MyController
         $data['new_users'] = (new UserLogic())->getUsers(30, 'new');
         $data['hot_users'] = (new UserLogic())->getUsers(30, 'hot');
         return view('home.user', $data);
-    }
-
-    public function login() {
-
     }
 
     public function register() {
@@ -70,6 +67,21 @@ class UserController extends MyController
                 return $this->showMessage('注册失败');
             }
         }
+    }
+
+    public function login() {
+        if(session('uid')) {
+            return redirect()->back();
+        }
+        $data['title'] = '用户登录';
+        return view('home.login', $data);
+
+    }
+
+
+    public function logout () {
+        Session::flush();
+        return redirect('user/login');
     }
 
 
