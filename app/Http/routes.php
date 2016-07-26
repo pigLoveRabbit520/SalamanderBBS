@@ -28,9 +28,11 @@ Route::get('/user/register', 'Home\UserController@register');
 
 Route::get('/user/login', 'Home\UserController@login');
 
-Route::post('/user/check', 'Home\UserController@checkUserInfo');
+Route::post('/user/checkReg', 'Home\UserController@checkRegInfo');
 
-Route::post('/user/verify', 'Home\UserController@verify');
+Route::post('/user/checkLogin', 'Home\UserController@checkLogin');
+
+Route::get('/user/logout', 'Home\UserController@logout');
 
 Route::get('/tags', 'Home\TagController@index');
 

@@ -34,4 +34,8 @@ class User extends Model implements AuthenticatableContract,
     public $timestamps = false;
     // 黑名单
     protected $guarded = ['uid'];
+
+    public function belongsToGroup() {
+        return $this->belongsTo('App\Models\Group', 'gid');
+    }
 }

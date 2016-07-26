@@ -9,6 +9,7 @@ namespace App\Http\Logic;
 
 
 use App\Models\User;
+use Illuminate\Support\Facades\Session;
 
 class UserLogic
 {
@@ -51,9 +52,27 @@ class UserLogic
     }
 
 
-    public static function updateCredit($uid, $credit) {
-
+    /**
+     * 判断是否登录
+     * @return bool
+     */
+    public static function isLogin() {
+        return !empty(session('uid'));
     }
 
+    /**
+     * 登录
+     * @param $uid
+     */
+    public static function login($uid) {
+        session(['uid' => $uid]);
+    }
+
+    /**
+     * 登出
+     */
+    public static function logout() {
+        Session::flush();
+    }
 
 }

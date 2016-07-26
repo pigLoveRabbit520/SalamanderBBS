@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-5">
                 <a href="/user/profile/{{ $myinfo['uid'] }}>">
-                    <img alt="{{ $myinfo['nickname'] }} large avatar" class="img-rounded" src="{{ $myinfo['avatar'] }}" />
+                    <img alt="{{ $myinfo['nickname'] }} large avatar" class="img-rounded" src="{{ $myinfo['avatar'] }}big.png" />
                 </a>
             </div>
             <div class="col-md-7">

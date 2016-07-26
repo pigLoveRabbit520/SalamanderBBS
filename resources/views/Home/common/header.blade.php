@@ -21,7 +21,7 @@
 
             <form action="/search" method="post" accept-charset="utf-8" class="navbar-form navbar-left" target="_blank" role="search">
                 <div style="display:none">
-                    <input type="hidden" name="stb_csrf_token" value="e522c6577f9ebbb1dd19cf04e84ce62e">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" name="keyword" placeholder="输入关键字回车">
@@ -31,10 +31,15 @@
             <ul class="nav navbar-nav navbar-right">
                 @if(session('uid'))
                     <li>
-                        <a href="/message"><span class="glyphicon glyphicon-envelope"></span> <?php if($myinfo['messages_unread']>0) echo $myinfo['messages_unread'];?></a>
+                        <a href="/message">
+                            <span class="glyphicon glyphicon-envelope"></span>
+                            @if($myinfo['messages_unread']>0) {{ $myinfo['messages_unread'] }} @endif
+                        </a>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class='glyphicon glyphicon-user'></span> {{ $myinfo['nickname'] }} <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class='glyphicon glyphicon-user'></span> {{ $myinfo['nickname'] }} <b class="caret"></b>
+                        </a>
                         <ul class="dropdown-menu">
                             <li><a href="user/profile/{{ session('uid') }}">个人主页</a></li>
                             <li><a href="/message">站内信</a></li>

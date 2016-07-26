@@ -13,7 +13,7 @@
 						<h3 class="panel-title">请登录</h3>
 					</div>
 					<div class="panel-body">
-						<form accept-charset="UTF-8" action="/user/verify" class="form-horizontal" id="new_user" method="post">
+						<form accept-charset="UTF-8" action="/user/checkLogin" class="form-horizontal" id="new_user" method="post">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							<div class="form-group">
 								<label class="col-md-2 control-label" for="user_nickname">邮箱</label>

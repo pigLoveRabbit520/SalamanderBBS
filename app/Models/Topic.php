@@ -13,6 +13,8 @@ class Topic extends Model
 {
     protected $table = 'topics';
 
+    protected $primaryKey = 'topic_id';
+
     // 关闭时间戳
     public $timestamps = false;
 

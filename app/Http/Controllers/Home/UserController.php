@@ -32,7 +32,7 @@ class UserController extends MyController
     /**
      * 验证用户注册参数
      */
-    public function checkUserInfo() {
+    public function checkRegInfo() {
         Input::merge(array_map('trim', Input::all()));
         $request = new UserRequest();
         $validator = Validator::make(Input::all(),
@@ -64,7 +64,7 @@ class UserController extends MyController
     }
 
     public function login() {
-        if(session('uid')) {
+        if(UserLogic::isLogin()) {
             return redirect()->back();
         }
         $data['title'] = '用户登录';
@@ -74,8 +74,8 @@ class UserController extends MyController
     /**
      * 验证登录参数
      */
-    public function verify() {
-        if(session('uid')) {
+    public function checkLogin() {
+        if(UserLogic::isLogin()) {
             return redirect()->back();
         }
         Input::merge(array_map('trim', Input::all()));
@@ -90,7 +90,7 @@ class UserController extends MyController
             $password = Input::get('password');
             if( (new UserLogic())->verifyUser($email, $password) ) {
                 $user = User::where('email', $email)->first();
-                Session::put('uid', $user->uid);
+                UserLogic::login($user->uid);
                 DB::beginTransaction();
                 try {
                     // 更新积分
@@ -111,9 +111,9 @@ class UserController extends MyController
         }
     }
 
-
+    // 登出
     public function logout () {
-        Session::flush();
+        UserLogic::logout();
         return redirect('user/login');
     }
 

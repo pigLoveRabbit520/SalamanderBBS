@@ -13,7 +13,7 @@
                         <h3 class="panel-title">注册用户</h3>
                     </div>
                     <div class="panel-body">
-                        <form class="form-horizontal" id="new_user" method="post" action="/user/check">
+                        <form class="form-horizontal" id="new_user" method="post" action="/user/checkReg">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="user_nickname">昵称</label>

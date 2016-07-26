@@ -18,7 +18,7 @@ class NodeController extends MyController
         $stats = DB::table('site_stats')->where('item', 'total_topics')->get();
         $data['stats']['total_topics'] = @$stats['value'];
         // 获取版块列表
-        $data['catelist'] = (new NodeLogic())->getAllCates();
+        $data['catelist'] = NodeLogic::getAllCates();
         // 获取node_ids数据
         if($data['catelist']) {
             foreach($data['catelist'] as $k => $v){

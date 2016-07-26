@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Logic\UserLogic;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -32,21 +33,22 @@ class MyController extends Controller
             'logo'=> Config::get('website.logo')
         );
         // 用户相关信息
-        if (session('uid')) {
-            $userinfo = User::find(session('uid'));
-            $data['myinfo']=array(
+        if (UserLogic::isLogin()) {
+            $user = User::find(session('uid'));
+            $group = $user->belongsToGroup;
+            $data['myinfo'] = array(
                 'uid'=> session('uid'),
-                'nickname'=> session('nickname'),
-                'avatar'=> session('avatar'),
-                'group_type'=> session('group_type'),
-                'gid'=> session('gid'),
-                'group_name'=> session('group_name'),
-                'is_active'=> @$userinfo['is_active'],
-                'favorites'=>  @$userinfo['favorites'],
-                'follows'=> @$userinfo['follows'],
-                'credit'=>  @$userinfo['credit'],
-                'notices'=> @$userinfo['notices'],
-                'messages_unread'=>@$userinfo['messages_unread'],
+                'nickname'=> @$user['nickname'],
+                'avatar'=> @$user['avatar'],
+                'group_type'=> $group['group_type'],
+                'gid'=> @$user['gid'],
+                'group_name' => $group['group_name'],
+                'is_active'=> @$user['is_active'],
+                'favorites'=>  @$user['favorites'],
+                'follows'=> @$user['follows'],
+                'credit'=>  @$user['credit'],
+                'notices'=> @$user['notices'],
+                'messages_unread'=>@$user['messages_unread'],
                 'lastpost'=> session('lastpost')
             );
         }

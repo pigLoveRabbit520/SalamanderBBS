@@ -13,13 +13,14 @@ use Illuminate\Support\Facades\DB;
 
 class NodeLogic
 {
-    public function getAllCates()
+    public static function getAllCates()
     {
         $res = DB::table('nodes')
-            ->select('node_id','pid','cname','ico','content','listnum','master')
+            ->select('node_id','pid','cname', 'ico', 'content',
+                'listnum', 'master')
             ->orderBy('pid', 'desc')->get();
         if(!empty($res)){
-            foreach($res as $k=>$v){
+            foreach($res as $k => $v){
                 $cates[$v['pid']][] = $v;
             }
         }
