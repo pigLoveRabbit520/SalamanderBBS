@@ -55,6 +55,15 @@ class MyController extends Controller
         view()->share($data);
     }
 
+    /**
+     * 显示错误信息
+     * @param string $message
+     * @param string $url
+     * @param int $status
+     * @param string $heading
+     * @param int $time
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     protected function showMessage($message= '', $url = '', $status = 2, $heading = '提示信息', $time = 2000) {
         $data = [
             'message' => $message,

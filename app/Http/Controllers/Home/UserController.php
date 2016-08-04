@@ -117,5 +117,18 @@ class UserController extends MyController
         return redirect('user/login');
     }
 
+    public function showProfileSettings() {
+        $uid = session('uid');
+        $data = User::find($uid);
+        $data['title'] = '账户设置';
+        return view('home.settings_profile', $data);
+    }
 
+    public function showAvatarSettings() {
+        return view('home.settings_avatar');
+    }
+
+    public function showPassowrdSettings() {
+        return view('home.settings_password');
+    }
 }

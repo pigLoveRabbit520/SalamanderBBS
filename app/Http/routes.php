@@ -16,23 +16,36 @@ Route::pattern('id', '[0-9]+');
 
 Route::get('/', 'Home\IndexController@index');
 
-Route::get('/nodes', 'Home\NodeController@index');
+Route::get('nodes', 'Home\NodeController@index');
 
-Route::get('/node/{id}', 'Home\NodeController@show');
+Route::get('node/{id}', 'Home\NodeController@show');
 
-Route::get('/users', 'Home\UserController@index');
+Route::get('users', 'Home\UserController@index');
 
-Route::get('/user/{id}', 'Home\UserController@show');
+// 用户路由
+Route::group(['prefix' => 'user'], function() {
+    Route::get('register', 'Home\UserController@register');
 
-Route::get('/user/register', 'Home\UserController@register');
+    Route::get('login', 'Home\UserController@login');
 
-Route::get('/user/login', 'Home\UserController@login');
+    Route::post('checkReg', 'Home\UserController@checkRegInfo');
 
-Route::post('/user/checkReg', 'Home\UserController@checkRegInfo');
+    Route::post('checkLogin', 'Home\UserController@checkLogin');
 
-Route::post('/user/checkLogin', 'Home\UserController@checkLogin');
+    Route::get('logout', 'Home\UserController@logout');
 
-Route::get('/user/logout', 'Home\UserController@logout');
+});
+
+// 用户设置路由
+Route::group(['prefix' => 'settings'], function() {
+    Route::get('/', 'Home\UserController@showProfileSettings');
+
+    Route::get('profile', 'Home\UserController@showProfileSettings');
+
+    Route::get('avatar', 'Home\UserController@showAvatarSettings');
+
+    Route::get('password', 'Home\UserController@showPassowrdSettings');
+});
 
 Route::get('/tags', 'Home\TagController@index');
 

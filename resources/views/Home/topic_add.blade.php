@@ -3,12 +3,11 @@
 @section('head')
     <script src="/js/plugins.js" type="text/javascript"></script>
     <script src="/js/jquery.upload.js" type="text/javascript"></script>
-    <?php if( Config::get('website.storage_set') =='local'){?>
-    <script src="/js/local.file.js" type="text/javascript"></script>
-    <?php } else{?>
-    <script src="/js/qiniu.js" type="text/javascript"></script>
-    <?php }?>
-
+    @if( Config::get('website.storage_set') =='local')
+		<script src="/js/local.file.js" type="text/javascript"></script>
+    @else
+		<script src="/js/qiniu.js" type="text/javascript"></script>
+   @endif
 @stop
 
 @section('main')
