@@ -117,6 +117,7 @@ class UserController extends MyController
         return redirect('user/login');
     }
 
+    // 显示个人简介
     public function showProfileSettings() {
         $uid = session('uid');
         $data = User::find($uid);
@@ -124,11 +125,15 @@ class UserController extends MyController
         return view('home.settings_profile', $data);
     }
 
+    // 显示头像设置
     public function showAvatarSettings() {
-        return view('home.settings_avatar');
+        $data['title'] = '头像设置';
+        $data['msg'] = '';
+        return view('home.settings_avatar',$data);
     }
 
+    // 显示密码
     public function showPassowrdSettings() {
-        return view('home.settings_password');
+        return view('home.settings_password')->with('title',  '修改密码');
     }
 }

@@ -14,7 +14,7 @@
 					</div>
 					<div class="panel-body">
 						<ul class="nav nav-tabs">
-							<li class="active"><a href="#">基本信息</a></li>
+							<li class="active"><a href="javascript:void(0)">基本信息</a></li>
 							<li><a href="/settings/avatar">修改头像</a></li>
 							<li><a href="/settings/password">密码安全</a></li>
 						</ul>
@@ -30,7 +30,7 @@
 								<div class="form-group">
 									<label class="col-md-2 control-label" for="user_email">电子邮件</label>
 									<div class="col-md-6">
-										<input class="form-control" id="user_email" name="email" size="50" type="email" value="{{ $email }}" />
+										<input class="form-control" disabled="disabled" id="user_email" name="email" size="50" type="email" value="{{ $email }}" />
 										<span class="help-block red"></span>
 									</div>
 								</div>

@@ -14,27 +14,27 @@
                     </div>
                     <div class="panel-body">
                         <ul class="nav nav-tabs">
-                            <li><a href="<?php echo site_url('settings/profile');?>">基本信息</a></li>
-                            <li class="active"><a href="#">修改头像</a></li>
-                            <li><a href="<?php echo site_url('settings/password');?>">密码安全</a></li>
+                            <li><a href="/settings/profile">基本信息</a></li>
+                            <li class="active"><a href="javascript:void(0)">修改头像</a></li>
+                            <li><a href="/settings/password">密码安全</a></li>
                         </ul>
                         <div class="setting">
                             <?php if ($msg!='') echo '<div class="alert alert-danger">'.$msg.'</div>'; ?>
-                            <form class="form-horizontal" enctype="multipart/form-data" action="<?php echo site_url('settings/avatar_upload')?>" method="post">
-                                <input type="hidden" name="<?php echo $csrf_name;?>" value="<?php echo $csrf_token;?>">
+                            <form class="form-horizontal" enctype="multipart/form-data" action="/settings/avatar_upload" method="post">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <fieldset>
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">当前头像</label>
                                         <div class="col-md-8">
-                                            <?php if ($myinfo['avatar']){?>
-                                            <img class="large_avatar" src="<?php echo base_url($avatar.'big.png');?>" class="img-rounded">
-                                            <img class="middle_avatar" src="<?php echo base_url($avatar.'normal.png');?>" class="img-rounded">
-                                            <img class="small_avatar" src="<?php echo base_url($avatar.'small.png');?>" class="img-rounded">
-                                            <?php } else {?>
-                                            <img class="large_avatar" src="<?php echo base_url('uploads/avatar/avatar_large.jpg');?>"/>
-                                            <img class="middle_avatar" src="<?php echo base_url('uploads/avatar/default.jpg');?>"/>
-                                            <img class="small_avatar" src="<?php echo base_url('uploads/avatar/avatar_small.jpg');?>"/>
-                                            <?php }?>
+                                            @if (!empty($myinfo['avatar']))
+                                                <img class="large_avatar" src="{{ $myinfo['avatar']. 'big.png' }}" class="img-rounded">
+                                                <img class="middle_avatar" src="{{ $myinfo['avatar'].'normal.png' }}" class="img-rounded">
+                                                <img class="small_avatar" src="{{ $myinfo['avatar'].'small.png' }}" class="img-rounded">
+                                            @else
+                                                <img class="large_avatar" src="/uploads/avatar/avatar_large.jpg"/>
+                                                <img class="middle_avatar" src="/uploads/avatar/default.jpg"/>
+                                                <img class="small_avatar" src="/uploads/avatar/avatar_small.jpg"/>
+                                            @endif
                                             <div class="alert alert-info alert-avatar">
                                                 <strong>注意</strong> 支持 512k 以内的 PNG / GIF / JPG 图片文件作为头像，推荐使用正方形的图片以获得最佳效果。
                                             </div>
