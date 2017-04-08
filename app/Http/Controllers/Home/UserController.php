@@ -114,7 +114,32 @@ class UserController extends MyController
         return redirect('user/login');
     }
 
-    // 显示个人简介
+    // 用户个人主页
+    public function showUserProfile() {
+        $data['user'] = $this->user_m->get_user_by_uid($uid);
+        if(!$data['user']){
+            show_message('用户不存在',site_url('/'));
+        }
+        //用户大头像
+        $this->load->model('upload_m');
+        $data['big_avatar']=$this->upload_m->get_avatar_url($uid, 'big');
+        //此用户发贴
+        $this->load->model('topic_m');
+        $data['topic_list'] = $this->topic_m->get_topics_by_uid($uid,5);
+        //此用户回贴
+        $this->load->model('comment_m');
+        $data['comment_list'] = $this->comment_m->get_comments_by_uid($uid,5);
+        //是否被关注
+        $this->load->model('follow_m');
+        $data['is_followed'] = $this->follow_m->follow_user_check($this->session->userdata('uid'), $uid);
+
+        $data['csrf_name'] = $this->security->get_csrf_token_name();
+        $data['csrf_token'] = $this->security->get_csrf_hash();
+        $data['title']=$data['user']['username'];
+        $this->load->view('user_profile', $data);
+    }
+
+    // 显示基本信息设置
     public function showProfileSettings() {
         $uid = session('uid');
         $data = User::find($uid);
