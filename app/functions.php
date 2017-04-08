@@ -49,6 +49,7 @@ if (! function_exists('my_sb_substr')) {
      * @param (int) $length
      * @param (string) $dot
      * @param (string) $charset
+     * @return string
      */
     function my_sb_substr( $string, $length, $dot = '..', $charset='utf-8' ) {
         $slen = strlen($string);
@@ -121,6 +122,8 @@ if (! function_exists('get_online_ip')) {
         {
             return $ip_arr['data']['ip'];
         }
+        else
+            return null;
     }
 }
 

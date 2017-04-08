@@ -7,13 +7,10 @@ use App\Http\Logic\UserLogic;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Exception;
-use Illuminate\Http\Request;
 
-use App\Http\Requests;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends MyController
