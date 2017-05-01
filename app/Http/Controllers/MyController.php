@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 
@@ -33,15 +34,15 @@ class MyController extends Controller
             'logo'=> Config::get('website.logo')
         );
         // 用户相关信息
-        if (UserLogic::isLogin()) {
-            $user = User::find(session('uid'));
+        if (App::make('User')->isLogin()) {
+            $user = App::make('User')->udata;
             $group = $user->belongsToGroup;
             $data['myinfo'] = array(
                 'uid'=> session('uid'),
-                'nickname'=> @$user['nickname'],
-                'avatar'=> @$user['avatar'],
+                'nickname'=> $user['nickname'],
+                'avatar'=> $user['avatar'],
                 'group_type'=> $group['group_type'],
-                'gid'=> @$user['gid'],
+                'gid'=> $user['gid'],
                 'group_name' => $group['group_name'],
                 'is_active'=> @$user['is_active'],
                 'favorites'=>  @$user['favorites'],

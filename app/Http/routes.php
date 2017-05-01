@@ -13,6 +13,7 @@
 use Mews\Captcha\Facades\Captcha;
 
 Route::pattern('id', '[0-9]+');
+Route::pattern('uid', '[0-9]+');
 
 Route::get('/', 'Home\IndexController@index');
 
@@ -27,6 +28,8 @@ Route::group(['prefix' => 'user'], function() {
     Route::get('register', 'Home\UserController@register');
 
     Route::get('login', 'Home\UserController@login');
+
+    Route::get('/{uid}', 'Home\UserController@showUserPersonalPage');
 
     Route::post('checkReg', 'Home\UserController@checkRegInfo');
 

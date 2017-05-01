@@ -41,7 +41,7 @@
                             <span class='glyphicon glyphicon-user'></span> {{ $myinfo['nickname'] }} <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="user/profile/{{ session('uid') }}">个人主页</a></li>
+                            <li><a href="/user/{{ session('uid') }}">个人主页</a></li>
                             <li><a href="/message">站内信</a></li>
                             <li><a href="/settings">设置</a></li>
                             @if(session('uid'))

@@ -115,7 +115,7 @@ class UserController extends MyController
     }
 
     // 用户个人主页
-    public function showUserProfile() {
+    public function showUserPersonalPage() {
         $data['user'] = $this->user_m->get_user_by_uid($uid);
         if(!$data['user']){
             show_message('用户不存在',site_url('/'));
